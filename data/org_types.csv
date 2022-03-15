@@ -1,0 +1,6 @@
+﻿org_type_lower,civil_service,org_type_label
+ministerial department,TRUE,Ministerial Department
+non-ministerial department,TRUE,Non-ministerial Department
+executive agency,TRUE,Executive Agency
+crown non departmental public body,TRUE,Crown Non-departmental Public Body
+executive non-departmental public body,FALSE,Executive Non-departmental Public Body

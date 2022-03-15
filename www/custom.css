@@ -1,0 +1,52 @@
+/* show download and copy button on a single line */
+#clip, #download { display: inline; }
+#download {padding: 8px 12px !important;}
+
+/* customise appearance of tabBox tabs */
+.nav-tabs-custom>.nav-tabs>li {
+    border-top: 0px solid transparent;
+    border-right: 3px solid #fff;
+    border-left: 3px solid #fff;
+    margin-bottom: -2px;
+    margin-right: 5px;
+}
+
+/* dark blue #3c8dbc light blue #00c0ef light grey #d2d6de lighter grey #e6eaf2 lightest grey #edf2fa */
+
+/*.nav-tabs-custom>.nav-tabs>li.active {
+    border-top-color: #fff;
+} */
+
+.nav-tabs-custom>.nav-tabs {
+    margin: 0;
+    border-bottom-color: #f4f4f4;
+    border-top-right-radius: 3px;
+    border-top-left-radius: 3px;
+    border-top: 3px solid #3c8dbc;
+}
+
+.nav-tabs-custom>.nav-tabs>li.active:hover>a, .nav-tabs-custom>.nav-tabs>li.active>a {
+    background-color: #edf2fa;
+    color: #444;
+}
+
+.maindisplay>div>table>thead>tr>th:nth-child(1), .maindisplay>div>table>tbody>tr>td:nth-child(1) {
+  text-align: left !important;
+}
+
+/* scroll bars and set max height on display area - height isn't working, set in javascript */
+.maindisplay {
+  overflow-y: scroll;
+  overflow-x: scroll;
+  height: 30%;
+}
+
+/* Table header text */
+.table-header1 {
+  font-size: 14px;
+  font-weight: 700;
+}
+.table-header2 {
+  font-size: 10px;
+  font-style: italic;
+}
