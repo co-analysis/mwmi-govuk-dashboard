@@ -3,7 +3,7 @@ library(magrittr)
 library(lubridate)
 
 # Initial data
-rawdat <- readRDS(url("https://github.com/jwallace-co/mwmi.govuk.data/blob/main/data/output/cleaned_data.RDS?raw=TRUE","rb"))
+rawdat <- readRDS(url("https://github.com/co-analysis/mwmi.govuk.data/blob/main/data/output/cleaned_data.RDS?raw=TRUE","rb"))
 
 # Create a named list
 named_list <- function(vals,noms) {
