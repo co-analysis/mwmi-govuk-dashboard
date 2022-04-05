@@ -23,7 +23,8 @@ server <- function(input,output,session) {
   # Dash view (tab, measure)
   s$view <- default_view 
   # baseurl stores the current home of the shiny dashboard, either locally or once online
-  s$baseurl = isolate(paste0(session$clientData$url_protocol,"//",session$clientData$url_hostname,":",session$clientData$url_port,session$clientData$url_pathname))
+  s$baseurl = isolate(paste0(session$clientData$url_protocol,"//",session$clientData$url_hostname,session$clientData$url_pathname))
+  # s$baseurl = isolate(paste0(session$clientData$url_protocol,"//",session$clientData$url_hostname,":",session$clientData$url_port,session$clientData$url_pathname))
   # dynamic url is initially set to the base
   s$url = isolate(s$baseurl)
   
