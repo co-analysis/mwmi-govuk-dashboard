@@ -8,3 +8,5 @@ library(magrittr)
 library(lubridate)
 library(shinyWidgets)
 library(janitor)
+
+write.table(data.frame(libraries=names(sessionInfo()$otherPkgs)),"dash app libraries.txt",row.names=FALSE,col.names=FALSE,quote=FALSE)

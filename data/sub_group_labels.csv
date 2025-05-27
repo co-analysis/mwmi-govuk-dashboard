@@ -1,10 +1,10 @@
 ﻿group,sub_group,sub_group_label
 all costs,total, 
 all employees,total, 
-non payroll,agency,Agency staff (clerical/admin)
-non payroll,consultants,Consultants/consultancy
-non payroll,contractors,Specialist contractors
+non payroll,admin,Clerical / admin
 non payroll,managers,Interim Managers
+non payroll,other,Other contingent labour
+non payroll,consultants,Consultants/consultancy
 non payroll,total, 
 non payroll costs,consultants,Consultants/consultancy
 non payroll costs,contingent,"Contingent labour (agency staff, interim managers, specialist contractors)"

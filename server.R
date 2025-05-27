@@ -166,7 +166,7 @@ server <- function(input,output,session) {
       filter(sub_group%in%input$sub_select) %>%
       common_filtration
   })
-  output$payroll_total <- renderTable(payroll_filtered(),align="r")
+  output$payroll_total <- renderTable(payroll_filtered(),align="r",digits=0)
 
   ########################################
   # Non payroll staff data set

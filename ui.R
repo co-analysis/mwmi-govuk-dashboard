@@ -1,5 +1,4 @@
 source("R/load libraries.R")
-
 # modify dashboardHeader() to accept non-list tags so that we can put in title text
 # TODO: disable header and replace with a custom header
 source("R/uncheckedHeader.R",local=TRUE)
@@ -47,7 +46,8 @@ body <- dashboardBody(
            status="info",
            collapsible=FALSE,
            airDatepickerInput('dateRange',
-                              value=c("2021-06-01",as.character(max(dat$Date))),
+                              # value=c("2021-06-01",as.character(max(dat$Date))),
+                              value=c(Sys.Date()-365,min(Sys.Date(),as.character(max(dat$Date)))),
                               label = "Date range",
                               range=TRUE,
                               dateFormat = "yyyy-mm",

@@ -3,7 +3,10 @@ library(magrittr)
 library(lubridate)
 
 # Initial data
-rawdat <- readRDS(url("https://github.com/co-analysis/mwmi.govuk.data/blob/main/data/output/cleaned_data.RDS?raw=TRUE","rb"))
+# rawdat <- readRDS(url("https://github.com/co-analysis/mwmi.govuk.data/blob/main/data/output/cleaned_data.RDS?raw=TRUE","rb"))
+# rawdat <- readRDS("C:/Users/joshua.wallace/Documents/R projects/mwmi.govuk.data/data/output/cleaned_data_trial.RDS")
+rawdat <- readRDS(url("https://github.com/co-analysis/mwmi.govuk.data/blob/main/data/output/cleaned_data_trial.RDS?raw=TRUE","rb"))
+
 
 # Create a named list
 named_list <- function(vals,noms) {
@@ -30,7 +33,8 @@ nonpayroll_sub_labels <- sub_group_coding %>%
   named_list(sub_group,sub_group_label)
 
 # User friendly labels for measures
-measure_coding <- read_csv("data/measure_labels.csv")
+measure_coding <- read_csv("data/measure_labels.csv") %>%
+  filter(measure!="costperfte")
 # Named list of measures
 measure_labels <- measure_coding %$% named_list(measure,measure_label)
 
