@@ -1,25 +1,25 @@
 ﻿group,sub_group,sub_group_label
-all costs,total, 
-all employees,total, 
+all costs,total,Total costs
+all employees,total,Total employees
 non payroll,admin,Clerical / admin
 non payroll,managers,Interim Managers
 non payroll,other,Other contingent labour
 non payroll,consultants,Consultants/consultancy
-non payroll,total, 
+non payroll,total,Total non payroll
 non payroll costs,consultants,Consultants/consultancy
 non payroll costs,contingent,"Contingent labour (agency staff, interim managers, specialist contractors)"
-non payroll costs,total, 
+non payroll costs,total,Total non payroll costs
 payroll,aao,AO / AA
 payroll,eo,EO
 payroll,sheo,SEO / HEO
 payroll,g67,G6 / G7
 payroll,scs,SCS
 payroll,other,"Other, unknown or unspecified"
-payroll,total, 
+payroll,total,Total payroll
 payroll costs,salary,Salary
 payroll costs,pension,Employer pension contributions
 payroll costs,ni,Employer national insurance contributions
 payroll costs,allowances,Allowances
 payroll costs,ncprp,Non-consolidated performance related payments
 payroll costs,overtime,Overtime
-payroll costs,total, 
+payroll costs,total,Total payroll costs

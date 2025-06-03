@@ -2,10 +2,7 @@ source("R/load libraries.R")
 # good practice to load all libraries in one place (doesn't seem to work?)
 # Relatedly - this app needs something to manage packages (e.g. packrat)
 
-################################################################################
-# Load dataset
-source("R/data setup.R") 
-# Returns a 'clean' data.frame 'dat'
+
 
 ################################################################################
 # Per session 
@@ -14,6 +11,13 @@ source("R/data setup.R")
 default_view <- list(tab="About",measure="fte")
 
 server <- function(input,output,session) {
+  
+  ################################################################################
+  # Load dataset - in server to enforce refresh
+  source("R/data setup.R") 
+  # Returns a 'clean' data.frame 'dat'
+  
+  
   ################################################################################
   # Initial values
   
@@ -43,20 +47,35 @@ server <- function(input,output,session) {
     if (input$maintab=="Payroll staff" & input$measures%in%c("costs","costperfte")) {
       sub_filt <- awesomeCheckboxGroup("sub_select","Payroll costs",
                               payroll_cost_sub_labels,
-                              selected=unlist(payroll_cost_sub_labels))
+                              # selected=unlist(payroll_cost_sub_labels))
+                              selected="total")
     }
     if (input$maintab=="Payroll staff" & !input$measures%in%c("costs","costperfte")) {
       sub_filt <- awesomeCheckboxGroup("sub_select","Payroll staff",
                                        choices=payroll_sub_labels,
-                                       selected=unlist(payroll_sub_labels))
+                                       # selected=unlist(payroll_sub_labels))
+                                       selected="total")
     }
     if (input$maintab=="Non-payroll staff" & !input$measures%in%c("costs","costperfte")) {
       sub_filt <- awesomeCheckboxGroup("sub_select","Non-payroll staff",
                                        choices=nonpayroll_sub_labels,
-                                       selected=unlist(nonpayroll_sub_labels))
+                                       # selected=unlist(nonpayroll_sub_labels))
+                                       selected="total")
     }
     sub_filt
   })
+  
+  # Filter for Departments
+  output$dept_filter <- renderUI({
+    dept_labs <- dept_vals
+    names(dept_labs) <- str_sub(dept_vals,1,40)
+    pickerInput(inputId="dept_select",
+                label="Select organisations",
+                choices=dept_labs,
+                selected=dept_labs,
+                multiple=TRUE,
+                options=list(`actions-box`=TRUE,dropdownAlignRight=FALSE,size=10))
+    })
   
   ########################################
   # Current data set for download
@@ -118,6 +137,7 @@ server <- function(input,output,session) {
       group_list <- c(group_list,"Organisation type")
       arrange_list <- c(arrange_list,"Organisation type")
     }
+    group_list <- c(group_list,"Group","Measure")
 
     # Format according to data measure
     form_function <- if(input$measures%in%c("costs","costperfte")) {
@@ -129,11 +149,16 @@ server <- function(input,output,session) {
     sum_na <- function(x) {
       ifelse(any(!is.na(x)),sum(x,na.rm=T),0*NA)
     }
+    
+    print(head(obj,2))
+    
     obj_out <- obj %>%
+      mutate(Group=sub_group_label,Measure=measure_label) %>%
       filter(measure==input$measures) %>%
+      filter(Department%in%input$dept_select) %>%
       filter(`Organisation type` %in% input$org_type_select) %>%
       filter(Date >= input$dateRange[1],Date <= input$dateRange[2]) %>%
-      filter(sub_group!="total") %>%
+      # filter(sub_group!="total") %>%
       group_by(across(group_list))
     
     if (input$measures=="costperfte") {

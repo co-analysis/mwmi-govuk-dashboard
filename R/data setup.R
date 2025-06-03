@@ -23,13 +23,16 @@ org_type_labels <- org_coding$org_type_label
 sub_group_coding <- read_csv("data/sub_group_labels.csv")
 
 payroll_sub_labels <- sub_group_coding %>%
-  filter(group=="payroll",sub_group!="total") %$%
+  # filter(group=="payroll",sub_group!="total") %$%
+  filter(group=="payroll") %$%
   named_list(sub_group,sub_group_label)
 payroll_cost_sub_labels <- sub_group_coding %>%
-  filter(group=="payroll costs",sub_group!="total") %$%
+  # filter(group=="payroll costs",sub_group!="total") %$%
+  filter(group=="payroll costs") %$%
   named_list(sub_group,sub_group_label)
 nonpayroll_sub_labels <- sub_group_coding %>%
-  filter(group=="non payroll",!sub_group%in%c("consultants","total")) %$%
+  # filter(group=="non payroll",!sub_group%in%c("consultants","total")) %$%
+  filter(group=="non payroll",!sub_group%in%c("consultants")) %$%
   named_list(sub_group,sub_group_label)
 
 # User friendly labels for measures
@@ -38,6 +41,7 @@ measure_coding <- read_csv("data/measure_labels.csv") %>%
 # Named list of measures
 measure_labels <- measure_coding %$% named_list(measure,measure_label)
 
+# Data setup
 dat <- rawdat %>%
   mutate(Date=dmy(paste0(1,"-",Month,"-",Year))) %>%
   mutate(org_type_lower=tolower(org_type)) %>%
@@ -48,8 +52,15 @@ dat <- rawdat %>%
   rename('Organisation type'=org_type_label)
 
 pivot_data <- dat %>%
-  filter(sub_group!="total") %>%
+  # filter(sub_group!="total") %>%
   select(Department,Body,Org_type=`Organisation type`,
          Year,Month,
          Group=group,Sub_group=sub_group_label,
          Measure=measure_label,value)
+
+# Unique Depts
+dept_vals <- sort(unique(pivot_data$Department))
+
+
+
+

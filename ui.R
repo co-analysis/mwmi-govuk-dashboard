@@ -63,7 +63,8 @@ body <- dashboardBody(
            awesomeCheckbox("org_type_show","Show organisation type in table",FALSE),
            awesomeCheckboxGroup("org_type_select","Organisation types",
                                 choices=org_type_labels,
-                                selected=setdiff(org_type_labels,"Executive Non-departmental Public Body"))
+                                selected=setdiff(org_type_labels,"Executive Non-departmental Public Body")),
+           uiOutput("dept_filter")
        ),
        box(width=NULL,
            status="info",
